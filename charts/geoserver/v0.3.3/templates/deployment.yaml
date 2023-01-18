@@ -49,6 +49,10 @@ spec:
           resources: {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}
           env:
+            - name: HTTP_PROXY_NAME
+              value: geoserver.{{ .Values.ingress.host }}
+            - name: HTTP_SCHEME
+              value: https
             {{- if .Values.enableJSONP }}
             - name: ENABLE_JSONP
               value: {{ .Values.enableJSONP | quote }}
